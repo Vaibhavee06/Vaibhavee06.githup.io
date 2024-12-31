@@ -1,0 +1,119 @@
+
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:food_delivery_app_main/users/fragments/my_order_view.dart';
+
+import '../../common/color_extension.dart';
+
+class AboutUsView extends StatefulWidget {
+  const AboutUsView({super.key});
+
+  @override
+  State<AboutUsView> createState() => _AboutUsViewState();
+}
+
+class _AboutUsViewState extends State<AboutUsView> {
+  List aboutTextArr = [
+    "Simple and Fast Ordering: Browse through our vast selection of dishes, add them to your cart, and place your order in just a few taps. Customizable Meals: Choose from a variety of options and customize your order to suit your taste and dietary preferences. Real-Time Tracking: Keep track of your order with our real-time tracking feature. User-Friendly Interface: Navigate through the app easily with our clean and intuitive design.",
+    "Easily register and log in to your account. Browse different categories of food and beverages. Add meals to your cart and place orders with just a few taps.",
+    "Contact US: \n 23mca209@charusat.edu.in OR \n 23mca214@charusat.edu.in",
+
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 46,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Image.asset("assets/img/btn_back.png",
+                          width: 20, height: 20),
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Expanded(
+                      child: Text(
+                        "About Us",
+                        style: TextStyle(
+                            color: TColor.primaryText,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w800),
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const MyOrderView()));
+                      },
+                      icon: Image.asset(
+                        "assets/img/shopping_cart.png",
+                        width: 25,
+                        height: 25,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                padding: EdgeInsets.zero,
+                itemCount: aboutTextArr.length,
+
+                itemBuilder: ((context, index) {
+                  var txt = aboutTextArr[index] as String? ?? "";
+                  return Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 15, horizontal: 25),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(top: 4),
+                          width: 6,
+                          height: 6,
+                          decoration: BoxDecoration(
+                              color: TColor.primary,
+                              borderRadius: BorderRadius.circular(4)),
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Expanded(
+                          child: Text(
+                            txt,
+                            style: TextStyle(
+                                color: TColor.primaryText,
+                                fontSize: 14),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                }),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
